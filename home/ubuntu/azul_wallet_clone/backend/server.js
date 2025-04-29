@@ -19,8 +19,11 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Middlewares
-app.use(cors());
-app.use(express.json());
+app.use(cors({
+  origin: ['https://hyzrvbbz.manus.space', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // Rota de teste
 app.get('/', (req, res) => {
@@ -78,8 +81,8 @@ app.get('/api/opcoes/:campo', async (req, res) => {
         if (error) throw error;
         res.json(data);
     } catch (error) {
-        console.error(`Erro ao buscar opções para ${campo}:`, error);
-        res.status(500).json({ error: `Erro interno ao buscar opções para ${campo}`, details: error.message });
+        console.error(Erro ao buscar opções para ${campo}:, error);
+        res.status(500).json({ error: Erro interno ao buscar opções para ${campo}, details: error.message });
     }
 });
 
@@ -193,6 +196,5 @@ app.get('/api/saldos', async (req, res) => {
 
 // Iniciar o servidor
 app.listen(port, () => {
-    console.log(`Servidor backend rodando em http://localhost:${port}`);
+    console.log(Servidor backend rodando em http://localhost:${port});
 });
-
